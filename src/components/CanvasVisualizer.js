@@ -107,7 +107,7 @@ export default class CanvasVisualizer extends Component {
 }
 
 CanvasVisualizer.defaultProps = {
-  colorProfile: defaultColorProfile(),
+  colorProfile: defaultColorProfile,
   boxWidth: 10,
   boxHeight: 10,
 }

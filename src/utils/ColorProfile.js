@@ -31,20 +31,23 @@ export function newNonFixedValue(currentNonFixedValue, direction) {
   return newValue
 }
 
-export function defaultColorProfile() {
-  // get an array of bytes from 0 to 255
-  const iterator = [...Array(256).keys()]
+// get an array of bytes from 0 to 255
+const iterator = [...Array(256).keys()]
 
+export function generateColorProfile({
+  startingColor,
+  startingNonFixedValue,
+  startingDirection,
+  startingJumpDirection,
+  startingJumpBy,
+}) {
   const profile = {}
-  const jumpDirection = 1
-  const color = {
-    r: 0,
-    g: 255,
-    b: 255,
-  }
-  let nonFixedValue = 'b'
-  let direction = -1
-  const jumpBy = 3
+
+  const color = startingColor
+  const jumpBy = startingJumpBy
+  const jumpDirection = startingJumpDirection
+  let nonFixedValue = startingNonFixedValue
+  let direction = startingDirection
 
   iterator.forEach((byte) => {
     profile[byte] = getColorFromObject(color)
@@ -68,3 +71,15 @@ export function defaultColorProfile() {
 
   return profile
 }
+
+export const defaultColorProfile = generateColorProfile({
+  startingColor: {
+    r: 0,
+    g: 255,
+    b: 255,
+  },
+  startingDirection: -1,
+  startingNonFixedValue: 'b',
+  startingJumpBy: 3,
+  startingJumpDirection: 1,
+})
