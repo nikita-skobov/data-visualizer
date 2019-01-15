@@ -44,7 +44,7 @@ export function defaultColorProfile() {
   }
   let nonFixedValue = 'b'
   let direction = -1
-  const jumpBy = 10
+  const jumpBy = 3
 
   iterator.forEach((byte) => {
     profile[byte] = getColorFromObject(color)
