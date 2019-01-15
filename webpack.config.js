@@ -1,6 +1,23 @@
 const path = require('path')
 const HtmlWebPackPlugin = require('html-webpack-plugin')
 
+function getPublicPath() {
+  try {
+    // eslint-disable-next-line
+    const { npm_lifecycle_event } = process.env
+    // eslint-disable-next-line
+    const command = npm_lifecycle_event
+    if (command === 'build:server') {
+      return '/'
+    }
+
+    // if doing a regular build
+    return './'
+  } catch (e) {
+    return '/'
+  }
+}
+
 module.exports = {
   entry: ['./src/entry.js'],
   watch: false,
@@ -11,7 +28,7 @@ module.exports = {
   // },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    publicPath: './',
+    publicPath: getPublicPath(),
     filename: 'scripts/bundle.js',
     // chunkFileName: 'bundle.[contenthash].js',
   },
