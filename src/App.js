@@ -3,8 +3,16 @@ import React, { Component } from 'react'
 import CanvasVisualizer from './components/CanvasVisualizer'
 
 export default function App() {
+  const testSize = 100
+  const arr = [...Array(testSize).keys()]
+  arr.forEach((key) => {
+    arr[key] = Math.floor(Math.random() * 255)
+  })
+
+  const testData = new Uint8Array(arr)
+
   return (
-    <CanvasVisualizer columns={10} />
+    <CanvasVisualizer data={testData} columns={10} />
   )
 }
 

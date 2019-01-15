@@ -8,19 +8,37 @@ export default class CanvasVisualizer extends Component {
     super(props)
 
     this.state = {
+      data: props.data,
       columns: props.columns,
       colorProfile: props.colorProfile,
     }
   }
 
+  componentDidMount() {
+    const { canvasNode } = this
+    console.log(canvasNode)
+  }
+
   render() {
-    const { columns, colorProfile } = this.state
+    const { columns, colorProfile, data } = this.state
     console.log(columns)
-    console.log(colorProfile)
+    console.log(data)
+
+    const createColorDiv = (str, w, h) => (
+      <div style={{ backgroundColor: str, width: w, height: h }} />
+    )
+
+    const divArr = []
+
+    data.forEach((key) => {
+      divArr.push(createColorDiv(colorProfile[key], '50px', '20px'))
+    })
+
+    console.log(divArr)
 
     return (
       <div>
-        dsadsadsa
+        <canvas ref={(node) => { this.canvasNode = node }} id="canvas" />
       </div>
     )
   }
@@ -33,4 +51,5 @@ CanvasVisualizer.defaultProps = {
 CanvasVisualizer.propTypes = {
   columns: PropTypes.number.isRequired,
   colorProfile: PropTypes.instanceOf(Object),
+  data: PropTypes.instanceOf(Uint8Array).isRequired,
 }
