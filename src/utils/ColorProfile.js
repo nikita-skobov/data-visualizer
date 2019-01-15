@@ -72,6 +72,30 @@ export function generateColorProfile({
   return profile
 }
 
+export const thermalColorProfile = generateColorProfile({
+  startingColor: {
+    r: 255,
+    g: 0,
+    b: 0,
+  },
+  startingDirection: 1,
+  startingNonFixedValue: 'b',
+  startingJumpBy: 3,
+  startingJumpDirection: -1,
+})
+
+export const blueGreenColorProfile = generateColorProfile({
+  startingColor: {
+    r: 175,
+    g: 255,
+    b: 0,
+  },
+  startingDirection: -1,
+  startingNonFixedValue: 'r',
+  startingJumpBy: 3,
+  startingJumpDirection: -1,
+})
+
 export const defaultColorProfile = generateColorProfile({
   startingColor: {
     r: 0,
