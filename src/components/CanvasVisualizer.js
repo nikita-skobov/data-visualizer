@@ -22,6 +22,7 @@ export default class CanvasVisualizer extends Component {
 
     this.makeRows = this.makeRows.bind(this)
     this.recalculateCanvasDimensions = this.recalculateCanvasDimensions.bind(this)
+    this.rebuildCanvas = this.rebuildCanvas.bind(this)
 
     const rows = this.makeRows()
     this.state.rows = rows
@@ -73,6 +74,34 @@ export default class CanvasVisualizer extends Component {
     const canvasHeight = rows.length * boxHeight
 
     return { canvasWidth, canvasHeight }
+  }
+
+  rebuildCanvas() {
+    const { data } = this.state
+    const rows = this.makeRows()
+    const { canvasHeight, canvasWidth } = this.recalculateCanvasDimensions(rows)
+
+    this.setState({ data, rows, canvasHeight, canvasWidth })
+  }
+
+  changeColumns(newColCount) {
+    this.setState((prevState) => {
+      const tempState = prevState
+      tempState.columns = newColCount
+      return tempState
+    }, () => {
+      this.rebuildCanvas()
+    })
+  }
+
+  changeData(newData) {
+    this.setState((prevState) => {
+      const tempState = prevState
+      tempState.data = newData
+      return tempState
+    }, () => {
+      this.rebuildCanvas()
+    })
   }
 
   makeRows() {
