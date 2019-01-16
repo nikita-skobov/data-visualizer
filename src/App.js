@@ -1,5 +1,13 @@
 import React, { Component } from 'react'
 
+import {
+  Row,
+  Col,
+  Form,
+  FormGroup,
+  CustomInput,
+} from 'reactstrap'
+
 import CanvasVisualizer from './components/CanvasVisualizer'
 
 export default function App() {
@@ -12,7 +20,18 @@ export default function App() {
   const testData = new Uint8Array(arr)
 
   return (
-    <CanvasVisualizer data={testData} columns={10} />
+    <Col fluid>
+      <Row>
+        <Form>
+          <FormGroup>
+            <CustomInput type="file" label="Choose a file" id="filebrowser" name="customFileBrowser" />
+          </FormGroup>
+        </Form>
+      </Row>
+      <Row>
+        <CanvasVisualizer data={testData} columns={10} />
+      </Row>
+    </Col>
   )
 }
 
