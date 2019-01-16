@@ -9,6 +9,10 @@ export default class CanvasVisualizer extends Component {
   constructor(props) {
     super(props)
 
+    // this.brain = props.brain
+    // this.brain.store('CanvasVisualizer', this)
+    window.CanvasVisualizer = this
+
     this.state = {
       data: props.data,
       columns: props.columns,
@@ -147,4 +151,5 @@ CanvasVisualizer.propTypes = {
   columns: PropTypes.number.isRequired,
   colorProfile: PropTypes.instanceOf(Object),
   data: PropTypes.instanceOf(Uint8Array).isRequired,
+  brain: PropTypes.instanceOf(Object).isRequired,
 }
